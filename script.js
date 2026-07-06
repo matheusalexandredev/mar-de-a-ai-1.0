@@ -86,7 +86,7 @@ const menu = [
         tag: "Garrafa Tradicional",
         desc: "Açaí batido com leite condensado e leite em pó ou farinha láctea.",
         preco: 0,
-        img: "public/CombOndaDoce.png",
+        img: "public/combOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 12.00 }, { nome: "500ml", preco: 16.00 }] }
@@ -97,7 +97,7 @@ const menu = [
         tag: "Garrafa Tradicional",
         desc: "Açaí batido com creme de ninho, leite condensado e leite em pó ou farinha láctea.",
         preco: 0,
-        img: "public/CombOndaDoce.png",
+        img: "public/combOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 12.00 }, { nome: "500ml", preco: 16.00 }] }
@@ -108,7 +108,7 @@ const menu = [
         tag: "Garrafa Tradicional",
         desc: "Açaí batido com creme de chocolate belga, leite condensado e leite em pó ou farinha láctea.",
         preco: 0,
-        img: "public/CombOndaDoce.png",
+        img: "public/combOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 12.00 }, { nome: "500ml", preco: 16.00 }] }
@@ -119,7 +119,7 @@ const menu = [
         tag: "Garrafa Tradicional",
         desc: "Ninho batido com leite condensado e leite em pó ou farinha láctea.",
         preco: 0,
-        img: "public/CombOndaDoce.png",
+        img: "public/combOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 12.00 }, { nome: "500ml", preco: 16.00 }] }
@@ -130,7 +130,7 @@ const menu = [
         tag: "Garrafa Tradicional",
         desc: "Escolha o tamanho, até 2 bases e 1 recheio.",
         preco: 0,
-        img: "public/CombOndaDoce.png",
+        img: "public/combOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 12.00 }, { nome: "500ml", preco: 16.00 }] },
@@ -149,7 +149,7 @@ const menu = [
         tag: "Garrafa Recheada",
         desc: "Açaí com Nutella (batida + leite em pó ou farinha láctea).",
         preco: 0,
-        img: "public/CombOndaDoce.png",
+        img: "public/combOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 15.00 }, { nome: "500ml", preco: 19.00 }] }
@@ -160,7 +160,7 @@ const menu = [
         tag: "Garrafa Recheada",
         desc: "Açaí & creme de tapioca com coco ralado e Nutella (batida + leite em pó ou farinha láctea).",
         preco: 0,
-        img: "public/CombOndaDoce.png",
+        img: "public/combOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 15.00 }, { nome: "500ml", preco: 19.00 }] }
@@ -171,7 +171,7 @@ const menu = [
         tag: "Garrafa Recheada",
         desc: "Açaí com amendoim triturado e Nutella (batida + leite em pó ou farinha láctea).",
         preco: 0,
-        img: "public/CombOndaDoce.png",
+        img: "public/combOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 15.00 }, { nome: "500ml", preco: 19.00 }] }
@@ -182,7 +182,7 @@ const menu = [
         tag: "Garrafa Recheada",
         desc: "Escolha o tamanho, até 2 bases e 2 recheios.",
         preco: 0,
-        img: "public/CombOndaDoce.png",
+        img: "public/combOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 15.00 }, { nome: "500ml", preco: 19.00 }] },
