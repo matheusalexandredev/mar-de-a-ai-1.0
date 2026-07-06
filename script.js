@@ -31,7 +31,7 @@ const menu = [
         nome: "Monte sua Tigela ou Copo",
         desc: "Escolha entre Tigela (300 ml) ou Copo (500 ml), até 2 bases, 5 acompanhamentos e 1 cobertura — tudo incluso no preço. Nutella é adicional.",
         preco: 0,
-        img: "public/combOndaDoce.png",
+        img: "public/maredebrigadeiro.png",
         grupos: [
           {
             titulo: "Escolha o tamanho",
