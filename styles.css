@@ -111,13 +111,12 @@ button {
   background: radial-gradient(circle at 20% 20%, rgba(245, 166, 35, .25), transparent 40%), linear-gradient(120deg, var(--roxo-900), var(--roxo-500));
 }
 
-.store-header {
+.store-header{
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 24px;
   position: relative;
-  z-index: 45;
-  /* era 220 — agora fica acima do conteúdo, mas abaixo dos modais (100+) */
+  z-index: 10;   /* era 45 — agora fica ABAIXO da navbar (40) */
 }
 
 .store-id {
@@ -208,6 +207,11 @@ button {
     gap: 10px;
     padding: 12px 16px;
   }
+  
+  .store-header{
+  z-index: 10;
+  position: relative;
+}
 
   .topnav .nav-item {
     width: 100%;
