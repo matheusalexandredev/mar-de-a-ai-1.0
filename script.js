@@ -664,7 +664,7 @@ prodModal.addEventListener('click', (e) => { if(e.target === prodModal) prodModa
 /* ----------------- MODAL PROMOÇÕES ----------------- */
 const promoModal = document.getElementById('promoModal');
 const promoItems = [
-  { titulo: '2x por R$35', texto: 'Dois açaís com acompanhamentos ilimitados por R$35,00.' },
+  { titulo: 'Sem promoções no momento', texto: '🦆' },
 ];
 
 function renderPromocoes(){
