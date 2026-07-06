@@ -133,20 +133,20 @@ button {
   width: 112px;
   height: 112px;
   border-radius: 50%;
-  background: var(--roxo-700);
   border: 5px solid #fff;
   box-shadow: var(--sombra);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  color: var(--laranja);
-  text-align: center;
-  font-size: 13px;
-  line-height: 1.15;
-  flex: none;
   overflow: hidden;
+  flex: none;
+  background: #fff;
 }
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* preenche todo o círculo */
+  display: block;
+}
+
 
 .logo span.script {
   display: block;

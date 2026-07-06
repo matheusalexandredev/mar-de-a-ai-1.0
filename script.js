@@ -31,7 +31,7 @@ const menu = [
         nome: "Monte sua Tigela ou Copo",
         desc: "Escolha entre Tigela (300 ml) ou Copo (500 ml), até 2 bases, 5 acompanhamentos e 1 cobertura — tudo incluso no preço. Nutella é adicional.",
         preco: 0,
-        img: IMG + "Tigela+e+Copo",
+        img: "public/CombOndaDoce.png",
         grupos: [
           {
             titulo: "Escolha o tamanho",
@@ -86,7 +86,7 @@ const menu = [
         tag: "Garrafa Tradicional",
         desc: "Açaí batido com leite condensado e leite em pó ou farinha láctea.",
         preco: 0,
-        img: IMG + "Paraiso+Roxo",
+        img: "public/CombOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 12.00 }, { nome: "500ml", preco: 16.00 }] }
@@ -97,7 +97,7 @@ const menu = [
         tag: "Garrafa Tradicional",
         desc: "Açaí batido com creme de ninho, leite condensado e leite em pó ou farinha láctea.",
         preco: 0,
-        img: IMG + "Tsunami+de+Acai",
+        img: "public/CombOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 12.00 }, { nome: "500ml", preco: 16.00 }] }
@@ -108,7 +108,7 @@ const menu = [
         tag: "Garrafa Tradicional",
         desc: "Açaí batido com creme de chocolate belga, leite condensado e leite em pó ou farinha láctea.",
         preco: 0,
-        img: IMG + "Mar+de+Chocolate",
+        img: "public/CombOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 12.00 }, { nome: "500ml", preco: 16.00 }] }
@@ -119,7 +119,7 @@ const menu = [
         tag: "Garrafa Tradicional",
         desc: "Ninho batido com leite condensado e leite em pó ou farinha láctea.",
         preco: 0,
-        img: IMG + "Areia+Branca",
+        img: "public/CombOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 12.00 }, { nome: "500ml", preco: 16.00 }] }
@@ -130,7 +130,7 @@ const menu = [
         tag: "Garrafa Tradicional",
         desc: "Escolha o tamanho, até 2 bases e 1 recheio.",
         preco: 0,
-        img: IMG + "Monte+a+sua+Garrafa",
+        img: "public/CombOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 12.00 }, { nome: "500ml", preco: 16.00 }] },
@@ -149,7 +149,7 @@ const menu = [
         tag: "Garrafa Recheada",
         desc: "Açaí com Nutella (batida + leite em pó ou farinha láctea).",
         preco: 0,
-        img: IMG + "Mare+Doce",
+        img: "public/CombOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 15.00 }, { nome: "500ml", preco: 19.00 }] }
@@ -160,7 +160,7 @@ const menu = [
         tag: "Garrafa Recheada",
         desc: "Açaí & creme de tapioca com coco ralado e Nutella (batida + leite em pó ou farinha láctea).",
         preco: 0,
-        img: IMG + "Nuvem+de+Coco",
+        img: "public/CombOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 15.00 }, { nome: "500ml", preco: 19.00 }] }
@@ -171,7 +171,7 @@ const menu = [
         tag: "Garrafa Recheada",
         desc: "Açaí com amendoim triturado e Nutella (batida + leite em pó ou farinha láctea).",
         preco: 0,
-        img: IMG + "Brisa+de+Amendoim",
+        img: "public/CombOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 15.00 }, { nome: "500ml", preco: 19.00 }] }
@@ -182,7 +182,7 @@ const menu = [
         tag: "Garrafa Recheada",
         desc: "Escolha o tamanho, até 2 bases e 2 recheios.",
         preco: 0,
-        img: IMG + "Monte+Recheada",
+        img: "public/CombOndaDoce.png",
         grupos: [
           { titulo: "Escolha o tamanho", tipo: "unica", obrigatorio: true, max: 1,
             opcoes: [{ nome: "300ml", preco: 15.00 }, { nome: "500ml", preco: 19.00 }] },
