@@ -108,9 +108,7 @@ button {
 /* ---------- BANNER / CAPA ---------- */
 .cover {
   height: 230px;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(245, 166, 35, .25), transparent 40%),
-    linear-gradient(120deg, var(--roxo-900), var(--roxo-500));
+  background: radial-gradient(circle at 20% 20%, rgba(245, 166, 35, .25), transparent 40%), linear-gradient(120deg, var(--roxo-900), var(--roxo-500));
 }
 
 .store-header {
@@ -143,7 +141,8 @@ button {
 .logo img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* preenche todo o círculo */
+  object-fit: cover;
+  /* preenche todo o círculo */
   display: block;
 }
 
@@ -1106,8 +1105,14 @@ button {
   display: flex;
   justify-content: space-between;
   margin-bottom: 4px;
-  .resumo-pedido .linha span:first-child{ color: var(--texto-suave); }
-  .resumo-pedido .linha.total span:first-child{ color: var(--texto); }
+
+  .resumo-pedido .linha span:first-child {
+    color: var(--texto-suave);
+  }
+
+  .resumo-pedido .linha.total span:first-child {
+    color: var(--texto);
+  }
 }
 
 .resumo-pedido .total {
