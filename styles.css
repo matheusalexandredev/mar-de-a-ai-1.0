@@ -1106,6 +1106,8 @@ button {
   display: flex;
   justify-content: space-between;
   margin-bottom: 4px;
+  .resumo-pedido .linha span:first-child{ color: var(--texto-suave); }
+  .resumo-pedido .linha.total span:first-child{ color: var(--texto); }
 }
 
 .resumo-pedido .total {

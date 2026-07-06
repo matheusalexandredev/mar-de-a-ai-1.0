@@ -298,18 +298,34 @@ const cupomModal = document.getElementById('cupomModal');
 const cupomInput = document.getElementById('cupomInput');
 const cupomMsg = document.getElementById('cupomMsg');
 const cuponsValidos = {
-  "TESTE": 0.10,
+  "TESTE": 3.00,
 };
+let taxaEntrega = 2.00; // troque pelo valor real, ou 0 se ainda não for cobrar
 let cupomAplicado = null;
 
+/* Total usado no carrinho lateral do DESKTOP (sidebar) */
 function calcularTotal(){
   const subtotal = carrinho.reduce((s, i) => s + i.preco * i.qtd, 0);
-  if(!cupomAplicado) return subtotal;
+  let total = subtotal;
 
-  if(cupomAplicado.valor < 1){
-    return subtotal * (1 - cupomAplicado.valor);
+  if(cupomAplicado){
+    total = cupomAplicado.valor < 1
+      ? total * (1 - cupomAplicado.valor)
+      : Math.max(0, total - cupomAplicado.valor);
   }
-  return Math.max(0, subtotal - cupomAplicado.valor);
+
+  return total + taxaEntrega;
+}
+
+/* Total usado na sacola MOBILE, checkout e mensagem do WhatsApp */
+function calcularTotalCarrinho(){
+  let total = carrinho.reduce((s, i) => s + i.preco * i.qtd, 0);
+  if(cupomAplicado){
+    total = cupomAplicado.valor < 1
+      ? total * (1 - cupomAplicado.valor)
+      : Math.max(0, total - cupomAplicado.valor);
+  }
+  return total + taxaEntrega; // <-- AQUI estava faltando a taxa
 }
 
 function addAoCarrinho(p, qtd = 1, obs = ""){
@@ -374,7 +390,7 @@ const cartModal = document.getElementById('cartModal');
 
 function atualizarCartFloatMobile(){
   const totalItens = carrinho.reduce((s, i) => s + i.qtd, 0);
-  const total = calcularTotalCarrinho ? calcularTotalCarrinho() : carrinho.reduce((s, i) => s + i.preco * i.qtd, 0);
+  const total = calcularTotalCarrinho();
   const bnSacola = document.getElementById('bnSacola');
 
   if(totalItens > 0){
@@ -393,12 +409,17 @@ function atualizarCartFloatMobile(){
 
 function renderCartModal(){
   const wrap = document.getElementById('cartModalItems');
-  const totalEl = document.getElementById('cartModalTotal');
+  const resumo = document.getElementById('cartModalResumo');
+  const cmSubtotal = document.getElementById('cmSubtotal');
+  const cmTaxa = document.getElementById('cmTaxa');
+  const cmTotal = document.getElementById('cmTotal');
+  const couponMobile = document.getElementById('couponMobile');
   const footer = document.getElementById('cartModalFooter');
 
   if(carrinho.length === 0){
     wrap.innerHTML = `<p style="text-align:center;color:var(--texto-suave);padding:20px 0;">Sacola vazia</p>`;
-    totalEl.style.display = 'none';
+    resumo.style.display = 'none';
+    couponMobile.style.display = 'none';
     footer.style.display = 'none';
     return;
   }
@@ -421,9 +442,14 @@ function renderCartModal(){
     btn.addEventListener('click', () => removerItemDoCarrinho(Number(btn.dataset.index)));
   });
 
-  const total = calcularTotalCarrinho ? calcularTotalCarrinho() : carrinho.reduce((s, i) => s + i.preco * i.qtd, 0);
-  totalEl.style.display = 'flex';
-  totalEl.innerHTML = `<span>Total</span><span>R$ ${money(total)}</span>`;
+  const subtotal = carrinho.reduce((s, i) => s + i.preco * i.qtd, 0);
+  const total = calcularTotalCarrinho();
+
+  cmSubtotal.textContent = `R$ ${money(subtotal)}`;
+  if(cmTaxa) cmTaxa.textContent = `R$ ${money(taxaEntrega)}`;
+  cmTotal.textContent = `R$ ${money(total)}`;
+  resumo.style.display = 'block';
+  couponMobile.style.display = 'block';
   footer.style.display = 'block';
 }
 
@@ -668,6 +694,18 @@ document.querySelector('.coupon .side-row').addEventListener('click', () => {
   cupomInput.focus();
 });
 
+/* Cupom acionado a partir da sacola mobile (fica FORA de qualquer loop) */
+const couponMobileEl = document.getElementById('couponMobile');
+if(couponMobileEl){
+  couponMobileEl.addEventListener('click', () => {
+    cartModal.classList.remove('show'); // fecha a sacola pra abrir o cupom por cima
+    cupomModal.classList.add('show');
+    cupomInput.value = cupomAplicado ? cupomAplicado.codigo : "";
+    cupomMsg.textContent = "";
+    cupomInput.focus();
+  });
+}
+
 document.getElementById('closeCupom').addEventListener('click', () => cupomModal.classList.remove('show'));
 cupomModal.addEventListener('click', (e) => { if(e.target === cupomModal) cupomModal.classList.remove('show'); });
 
@@ -742,23 +780,15 @@ document.getElementById('ckPagamento').addEventListener('change', (e) => {
   document.getElementById('campoTroco').style.display = e.target.value === 'Dinheiro' ? 'block' : 'none';
 });
 
-function calcularTotalCarrinho(){
-  let total = carrinho.reduce((s,i)=> s + i.preco*i.qtd, 0);
-  if(cupomAplicado){
-    total = cupomAplicado.valor < 1
-      ? total * (1 - cupomAplicado.valor)
-      : Math.max(0, total - cupomAplicado.valor);
-  }
-  return total;
-}
-
 function renderResumoPedido(){
   const resumo = document.getElementById('resumoPedido');
   const linhas = carrinho.map(i => `
     <div class="linha"><span>${i.qtd}x ${i.nome}</span><span>R$ ${money(i.preco*i.qtd)}</span></div>
   `).join('');
   const total = calcularTotalCarrinho();
-  resumo.innerHTML = linhas + `<div class="linha total"><span>Total</span><span>R$ ${money(total)}</span></div>`;
+  resumo.innerHTML = linhas
+    + `<div class="linha"><span>Taxa de entrega</span><span>R$ ${money(taxaEntrega)}</span></div>`
+    + `<div class="linha total"><span>Total</span><span>R$ ${money(total)}</span></div>`;
 }
 
 function validarCampo(id, condicao){
@@ -809,7 +839,8 @@ function montarMensagemPedido({ nome, endereco, pagamento, troco, obsGeral, tipo
     msg += `\n*Cupom aplicado:* ${cupomAplicado.codigo}\n`;
   }
 
-  msg += `\n*Total: R$ ${money(total)}*\n`;
+  msg += `\n*Taxa de entrega:* R$ ${money(taxaEntrega)}\n`;
+  msg += `*Total: R$ ${money(total)}*\n`;
   msg += `\n*Pagamento:* ${pagamento}`;
   if(pagamento === 'Dinheiro' && troco) msg += ` (troco para R$ ${troco})`;
   if(obsGeral) msg += `\n\n*Observação geral:* ${obsGeral}`;

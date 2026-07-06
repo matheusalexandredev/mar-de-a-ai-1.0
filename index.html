@@ -230,10 +230,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 15l6-6M9.5 10a.5.5 0 100-1 .5.5 0 000 1zM14.5 15a.5.5 0 100-1 .5.5 0 000 1z"/></svg>
       <span>Promoções</span>
     </button>
-    <button class="bn-item" id="bnPedidos">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg>
-      <span>Pedidos</span>
-    </button>
+
     <button class="bn-item" id="bnSacola">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7V5a3 3 0 016 0v2"/></svg>
       <span>Sacola</span>
@@ -250,7 +247,22 @@
     </div>
     <div style="padding:18px; max-height:65vh; overflow-y:auto;">
       <div class="cart-items" id="cartModalItems"></div>
-      <div class="cart-total" id="cartModalTotal"></div>
+
+      <div class="resumo-pedido" id="cartModalResumo" style="margin-top:16px; display:none;">
+        <div class="linha"><span>Subtotal</span><span id="cmSubtotal">R$ 0,00</span></div>
+        <div class="linha"><span>Taxa de entrega</span><span id="cmTaxa">R$ 2,00</span></div>
+        <div class="linha total"><span>Total</span><span id="cmTotal">R$ 0,00</span></div>
+      </div>
+
+      <div class="coupon" id="couponMobile" style="display:none;">
+        <div class="side-row">
+          <span class="left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V6a2 2 0 012-2h3l10 10-7 7L2 11V9"/><circle cx="8.5" cy="8.5" r="1"/></svg>
+            <span>Tem um cupom?<br><small style="font-weight:400;color:var(--texto-suave)">Clique e insira o código</small></span>
+          </span>
+          <span>›</span>
+        </div>
+      </div>
     </div>
     <div id="cartModalFooter" style="padding:14px 18px; border-top:1px solid var(--borda); display:none;">
       <button class="checkout-btn" id="abrirCheckoutDaSacola" style="margin-top:0;">Finalizar pedido</button>
