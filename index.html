@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mar de Açaí</title>
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+<nav class="topnav">
+  <button class="nav-item active" data-scroll="topo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 001 1h12a1 1 0 001-1v-9"/></svg>
+    Início
+  </button>
+  <button class="nav-item" id="btnPromocoes">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 15l6-6M9.5 10a.5.5 0 100-1 .5.5 0 000 1zM14.5 15a.5.5 0 100-1 .5.5 0 000 1z"/></svg>
+    Promoções
+  </button>
+</nav>
+
+<div class="cover" id="topo"></div>
+
+<div class="store-header">
+  <div class="store-id">
+    <div class="logo"><span class="script">Mar de Açaí</span></div>
+    <div class="store-meta">
+      <h1>Mar de Açaí </h1>
+      <div class="store-status">
+        <span><span class="status-dot" id="statusDot">Fechado</span> • <span id="statusHint">Abrimos segunda às 13h00</span></span>
+        <span>•</span>
+        <span>📍 Baia Formosa - RN</span>
+        <span>•</span>
+        <a class="info-link" href="https://www.instagram.com/maardeacai/" target="_blank" rel="noopener noreferrer">Mais informações</a>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <main>
+    <div class="filters">
+      <div class="cat-select" id="catSelect">
+        <span id="catSelectLabel">Lista de categorias</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        <div class="cat-dropdown" id="catDropdown"></div>
+      </div>
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="text" id="searchInput" placeholder="Busque por um produto">
+      </div>
+    </div>
+
+    <div id="menuContainer"></div>
+  </main>
+
+    <aside class="sidebar">
+
+    <div class="side-card" id="cartCard">
+      <div class="cart-empty" id="cartEmpty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7V5a3 3 0 016 0v2"/></svg>
+        Sacola vazia
+      </div>
+      <div class="cart-items" id="cartItems" style="display:none;"></div>
+      <div class="cart-total" id="cartTotal" style="display:none;"></div>
+
+      <div class="coupon">
+        <div class="side-row">
+          <span class="left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V6a2 2 0 012-2h3l10 10-7 7L2 11V9"/><circle cx="8.5" cy="8.5" r="1"/></svg>
+            <span>Tem um cupom?<br><small style="font-weight:400;color:var(--texto-suave)">Clique e insira o código</small></span>
+          </span>
+          <span>›</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="checkout-btn" id="abrirCheckout">Finalizar pedido</button>
+  </aside>
+</div>
+
+<div class="modal-overlay" id="promoModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Promoções</h2>
+      <button class="modal-close" id="closePromo">✕</button>
+    </div>
+    <div class="modal-body">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8.5 13.5l5-5M13.5 13.5l-5-5"/></svg>
+      <strong>NENHUMA PROMOÇÃO ENCONTRADA</strong>
+    </div>
+  </div>
+</div>
+
+<div class="prod-modal-overlay" id="prodModal">
+  <div class="prod-modal">
+    <div class="prod-modal-img">
+      <img id="pmImg" src="" alt="">
+    </div>
+    <div class="prod-modal-right">
+      <div class="prod-modal-head">
+        <h2>Detalhes do produto</h2>
+        <button class="prod-modal-close" id="pmClose">✕</button>
+      </div>
+      <div class="prod-modal-body">
+        <h3 id="pmNome"></h3>
+        <p class="desc" id="pmDesc"></p>
+        <div class="preco" id="pmPreco"></div>
+
+        <div id="pmGrupos"></div>
+
+        <div class="obs-label">
+          <label for="pmObs">Alguma observação?</label>
+          <span class="count"><span id="pmObsCount">0</span> / 140</span>
+        </div>
+        <textarea class="obs-box" id="pmObs" maxlength="140" placeholder="Ex: sem leite condensado, capricha na granola..."></textarea>
+      </div>
+      <div class="prod-modal-footer">
+        <div class="qty-stepper">
+          <button id="pmMenos">−</button>
+          <span class="qtyval" id="pmQtd">1</span>
+          <button id="pmMais">+</button>
+        </div>
+        <button class="btn-adicionar" id="pmAdicionar">
+          <span>Adicionar</span>
+          <span id="pmTotal">R$ 0,00</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="cupomModal">
+  <div class="modal" style="max-width:420px;">
+    <div class="modal-head">
+      <h2>Adicionar cupom</h2>
+      <button class="modal-close" id="closeCupom">✕</button>
+    </div>
+    <div style="padding:24px 22px 26px;">
+      <label for="cupomInput" style="font-size:13.5px;font-weight:600;display:block;margin-bottom:8px;">
+        Código do cupom
+      </label>
+      <input type="text" id="cupomInput" placeholder="Ex: PROMO10"
+        style="width:100%;padding:12px 14px;border:1px solid var(--borda);border-radius:8px;
+               font-size:14px;text-transform:uppercase;outline:none;margin-bottom:8px;">
+      <p id="cupomMsg" style="font-size:12.5px;margin:0 0 18px;min-height:16px;"></p>
+
+      <button id="aplicarCupom" style="width:100%;border:none;border-radius:8px;padding:13px;
+        background:var(--roxo-700);color:#fff;font-weight:700;font-size:14.5px;">
+        Aplicar cupom
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal" style="max-width:460px;">
+    <div class="modal-head">
+      <h2>Finalizar pedido</h2>
+      <button class="modal-close" id="closeCheckout">✕</button>
+    </div>
+    <div style="padding:22px; max-height:70vh; overflow-y:auto;">
+      <div class="entrega-tipo">
+        <button type="button" class="ativo" id="tipoEntrega" data-tipo="entrega">Entrega</button>
+        <button type="button" id="tipoRetirada" data-tipo="retirada">Retirar no local</button>
+      </div>
+
+      <div class="form-field">
+        <label for="ckNome">Seu nome</label>
+        <input type="text" id="ckNome" placeholder="Nome completo">
+        <small class="erro">Digite seu nome.</small>
+      </div>
+
+      <div class="form-field" id="campoEndereco">
+        <label for="ckEndereco">Endereço de entrega</label>
+        <input type="text" id="ckEndereco" placeholder="Rua, número, bairro, complemento">
+        <small class="erro">Digite o endereço de entrega.</small>
+      </div>
+
+      <div class="form-field">
+        <label for="ckPagamento">Forma de pagamento</label>
+        <select id="ckPagamento">
+          <option value="">Selecione...</option>
+          <option value="Dinheiro">Dinheiro</option>
+          <option value="Cartão na entrega">Cartão na entrega</option>
+          <option value="Pix">Pix</option>
+        </select>
+        <small class="erro">Selecione a forma de pagamento.</small>
+      </div>
+
+      <div class="form-field" id="campoTroco" style="display:none;">
+        <label for="ckTroco">Troco para quanto?</label>
+        <input type="text" id="ckTroco" placeholder="Ex: 50,00 (deixe em branco se não precisar)">
+      </div>
+
+      <div class="form-field">
+        <label for="ckObsGeral">Observação do pedido (opcional)</label>
+        <textarea id="ckObsGeral" rows="2" placeholder="Ex: sem interfone, ligar quando chegar..."></textarea>
+      </div>
+
+      <div class="resumo-pedido" id="resumoPedido"></div>
+
+      <button class="checkout-btn" id="enviarWhatsapp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2zm5.7 14.3c-.3.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5.2.5.7 1.8.8 1.9.1.2.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.1.6.7 1.2 1.5 1.9 2.6 2.5.2.1.4.1.5-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.5.7 1.8.9.3.1.5.2.5.3.1.2.1.7-.1 1.2z"/></svg>
+        Enviar pedido pelo WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- BARRA FLUTUANTE DA SACOLA -->
+<div class="cart-float" id="cartFloat">
+  <div class="cart-float-info">
+    <span class="qtd" id="cfQtd">1 item</span>
+    <span class="valor" id="cfValor">R$ 0,00</span>
+  </div>
+  <button id="cfVerSacola">Ver sacola</button>
+</div>
+
+<!-- NAVBAR FIXA EMBAIXO -->
+<nav class="bottom-nav">
+  <div class="bn-list">
+    <button class="bn-item active" id="bnInicio">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 001 1h12a1 1 0 001-1v-9"/></svg>
+      <span>Início</span>
+    </button>
+    <button class="bn-item" id="bnPromocoes">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 15l6-6M9.5 10a.5.5 0 100-1 .5.5 0 000 1zM14.5 15a.5.5 0 100-1 .5.5 0 000 1z"/></svg>
+      <span>Promoções</span>
+    </button>
+    <button class="bn-item" id="bnPedidos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg>
+      <span>Pedidos</span>
+    </button>
+    <button class="bn-item" id="bnSacola">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7V5a3 3 0 016 0v2"/></svg>
+      <span>Sacola</span>
+      <span class="bn-badge" id="bnBadge" style="display:none;">0</span>
+    </button>
+  </div>
+</nav>
+
+<div class="modal-overlay" id="cartModal">
+  <div class="modal" style="max-width:480px;">
+    <div class="modal-head">
+      <h2>Sua sacola</h2>
+      <button class="modal-close" id="closeCartModal">✕</button>
+    </div>
+    <div style="padding:18px; max-height:65vh; overflow-y:auto;">
+      <div class="cart-items" id="cartModalItems"></div>
+      <div class="cart-total" id="cartModalTotal"></div>
+    </div>
+    <div id="cartModalFooter" style="padding:14px 18px; border-top:1px solid var(--borda); display:none;">
+      <button class="checkout-btn" id="abrirCheckoutDaSacola" style="margin-top:0;">Finalizar pedido</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
